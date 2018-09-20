@@ -1,0 +1,10 @@
+---
+- import_tasks: ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- import_tasks: paths.yml
+  tags: paths
+
+- import_tasks: services.yml
+  when: ENABLE_SERVICES is defined and ENABLE_SERVICES == 'yes'
+  tags: services
