@@ -1,0 +1,9 @@
+---
+- name: create CIF_TOKEN
+  shell: cat /dev/urandom | head -c 512 | shasum -a 256 | awk -F ' ' '{print $1}'
+  register: cif_token_generated
+  when: CIF_TOKEN is not defined or CIF_TOKEN == ''
+
+- set_fact:
+    CIF_TOKEN: "{{ cif_token_generated.stdout }}"
+  when: CIF_TOKEN is not defined or CIF_TOKEN == ''
