@@ -10,6 +10,7 @@ cif_user_config_path: "{{ cif_home }}/.cif.yml"
 
 cif_fm_enabled: "{{ fm_enabled | default(true) }}"
 cif_router_enabled: "{{ router_enabled | default(true) }}"
+router_hunter_threads: "{{ lookup('env', 'CIF_HUNTER_THREADS') | default(router.hunter.threads) }}"
 cif_version: "{{ CIF_VERSION }}"
 
 # other

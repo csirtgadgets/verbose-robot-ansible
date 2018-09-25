@@ -1,6 +1,5 @@
 ---
 
-
 cif:
   release_url: "https://github.com/csirtgadgets/verbose-robot/archive"
 
@@ -24,17 +23,12 @@ router:
   etc_path: '/etc/cif'
   config_path: "{{ cif_etc_path }}/cif-router.yml"
   data_path: "/var/lib/{{ cif_user }}"
-  store:
-    store: 'sqlite'
-    nodes: 'localhost:9200'
 
   httpd:
     fireball_size: 500
     listen: 127.0.0.1
-    token:
 
   hunter:
-    token:
     exclude: 'osint.bambenekconsulting.com:dga'
     threads: 0
 

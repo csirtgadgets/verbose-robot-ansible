@@ -17,7 +17,7 @@
   when: CIF_HTTPD_TOKEN is not defined or CIF_HTTPD_TOKEN == ''
 
 - set_fact:
-    CIF_TOKEN: "{{ cif_httpd_token_generated.stdout }}"
+    CIF_HTTPD_TOKEN: "{{ cif_httpd_token_generated.stdout }}"
   when: CIF_HTTPD_TOKEN is not defined or CIF_HTTPD_TOKEN == ''
 
 - name: set httpd token
