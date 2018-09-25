@@ -1,12 +1,12 @@
 ---
-- name: create CIF_FM_TOKEN
+- name: create FM_CIF_TOKEN
   shell: cat /dev/urandom | head -c 512 | shasum -a 256 | awk -F ' ' '{print $1}'
   register: cif_fm_token_generated
-  when: CIF_FM_TOKEN is not defined or CIF_FM_TOKEN == ''
+  when: FM_CIF_TOKEN is not defined or FM_CIF_TOKEN == ''
 
 - set_fact:
-    CIF_TOKEN: "{{ cif_fm_token_generated.stdout }}"
-  when: CIF_FM_TOKEN is not defined or CIF_FM_TOKEN == ''
+    FM_CIF_TOKEN: "{{ cif_fm_token_generated.stdout }}"
+  when: FM_CIF_TOKEN is not defined or FM_CIF_TOKEN == ''
 
 - name: set FM token
-  shell: cif-store --token-create-fm --token "{{ $CIF_FM_TOKEN }}"
+  shell: cif-store --token-create-fm --token "{{ FM_CIF_TOKEN }}"
