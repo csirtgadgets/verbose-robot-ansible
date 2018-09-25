@@ -1,6 +1,6 @@
 ---
 - name: install versioneer
-  pip: name="{{ item }}"
+  pip: name="{{ item }}" executable=pip3
   with_items: [ versioneer markupsafe ]
 
 - name: cleaning up dist
@@ -20,16 +20,5 @@
   find: paths=/tmp patterns="^(verbose-robot-.*)$" use_regex=True file_type=directory
   register: p
 
-- name: install requirements
-  command: pip3 install -r dev_requirements.txt chdir="{{ p.files[0].path }}"
-  become: yes
-
-- name: run tests
-  command: python3 setup.py test chdir="{{ p.files[0].path }}"
-  become: yes
-
-- name: install cif
-  command: python3 setup.py install chdir="{{ p.files[0].path }}"
-  environment:
-    CIF_ENABLE_INSTALL: 1
-  become: yes
+- name: set dist path
+  set_fact: DIST_BUILD_PATH="{{ p.files[0].path }}"

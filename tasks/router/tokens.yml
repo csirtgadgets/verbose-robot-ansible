@@ -7,3 +7,6 @@
 - set_fact:
     CIF_TOKEN: "{{ cif_token_generated.stdout }}"
   when: CIF_TOKEN is not defined or CIF_TOKEN == ''
+
+- name: set admin token
+  shell: cif-store --token-create-admin --token "{{ $CIF_TOKEN }}"

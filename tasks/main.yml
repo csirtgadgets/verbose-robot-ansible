@@ -6,6 +6,8 @@
 - import_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
 
+- import_tasks: geoip.yml
+
 - import_tasks: user.yml
 
 - import_tasks: dist.yml
@@ -14,8 +16,10 @@
 - import_tasks: sdist.yml
   when: cif_build_sdist is defined and cif_build_sdist != ""
 
-- import_tasks: router/main.yml
-  when: cif_router_enabled
+- import_tasks: install.yml
 
 - import_tasks: fm/main.yml
   when: cif_fm_enabled
+
+- import_tasks: router/main.yml
+  when: cif_router_enabled

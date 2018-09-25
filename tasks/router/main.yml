@@ -9,5 +9,5 @@
   tags: paths
 
 - import_tasks: services.yml
-  when: ENABLE_SERVICES is defined and ENABLE_SERVICES == 'yes'
+  when: NO_SERVICES is undefined or NO_SERVICES == 'no'
   tags: services

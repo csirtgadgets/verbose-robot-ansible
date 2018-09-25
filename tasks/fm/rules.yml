@@ -1,6 +1,6 @@
 ---
 - name: copy csirtg-fm rules
-  command: cp -r "/tmp/verbose-robot/rules/default/" "{{ fm_rules_path | default(fm.rules_path) }}"
+  command: cp -r "{{ DIST_BUILD_PATH }}/rules/" "{{ fm_rules_path | default(fm.rules_path) }}"
 
 - name: Update rule permissions
   file:
