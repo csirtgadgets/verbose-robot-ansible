@@ -31,7 +31,7 @@
 - debug: msg="{{ cif_release_dir }}"
 
 - name: install requirements
-  command: pip install -r dev_requirements.txt chdir=/tmp/bearded-avenger-{{ cif_release_dir }}
+  command: pip install -r dev_requirements.txt chdir=/tmp/verbose-robot-{{ cif_release_dir }}
 
 - name: run tests
   command: python3 setup.py test chdir=/tmp/verbose-robot-{{ cif_release_dir }}

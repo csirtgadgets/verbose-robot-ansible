@@ -1,10 +1,7 @@
 ---
+
+
 cif:
-  user: cif
-  group: cif
-  etc_path: /etc/cif
-  home: /home/cif
-  user_config_path: /home/cif/.cif.yml
   release_url: "https://github.com/csirtgadgets/verbose-robot/archive"
 
 fm:
@@ -39,7 +36,7 @@ router:
   hunter:
     token:
     exclude: 'osint.bambenekconsulting.com:dga'
-    threads: 2
+    threads: 0
 
   gatherer:
     threads: 2

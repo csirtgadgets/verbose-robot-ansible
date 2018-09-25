@@ -1,7 +1,11 @@
 ---
 - name: "Check for version 16.04"
-  fail: msg="Must be version 16.04 or higher"
-  when: ansible_distribution_version | version_compare('16.04', '<')
+  fail: msg="Must be version 16.04"
+  when: ansible_distribution_version is version_compare('16.04', '<')
+
+- name: "Check for version 16.04"
+  fail: msg="Must be version 16.04"
+  when: ansible_distribution_version is version_compare('17', '>=')
 
 - name: Add apt HTTPS support
   apt: name="{{ item }}" state=present

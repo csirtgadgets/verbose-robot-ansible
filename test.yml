@@ -7,10 +7,10 @@
 
   vars:
     router_hunter_token: '1234'
-#    smrt_cif_remote: https://localhost
-#    smrt_cif_token: '1234'
+#    fm_cif_remote: https://localhost
+#    fm_cif_token: '1234'
 
-#    router_enabled: false  # smrt only role
+#    router_enabled: false  # fm only role
 #    fm_enabled: false   # router only role
 
   tasks:
