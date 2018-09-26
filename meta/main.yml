@@ -2,6 +2,7 @@ galaxy_info:
   author: Wes Young
   description: Collective Intelligence Framework
   company: CSIRT Gadgets
+  role_name: verbose-robot
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
