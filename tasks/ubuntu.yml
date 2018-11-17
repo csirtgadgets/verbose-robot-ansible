@@ -42,6 +42,7 @@
     - libgeoip-dev
     - iotop
     - htop
+    - libmagic-dev
 
 - name: create python36 links
   file: src=/usr/bin/python3.6 dest=/usr/local/bin/python3 state=link
