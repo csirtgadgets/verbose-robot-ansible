@@ -1,16 +1,26 @@
 ---
+- uri:
+    url: https://api.github.com/repos/csirtgadgets/verbose-robot/tags
+    return_content: true
+  register: resp
 
-# cif
+- set_fact:
+    latest_release: "{{ resp.content | from_json | sort(attribute='name') | reverse | first }}"
+
+- set_fact:
+    cif_version: "{{ latest_release.name }}"
+  when: cif_version == "master"
+
 - name: pull release from github
   get_url:
-    url: "{{ cif.release_url }}/{{ CIF_VERSION | default(cif.version) }}.tar.gz"
+    url: "{{ cif.release_url }}/{{ cif_version }}.tar.gz"
     dest: /tmp/verbose-robot.tar.gz
   when: GH_TOKEN is undefined or GH_TOKEN == ""
 
 # github likes to throttle when
 - name: pull release from github
   get_url:
-    url: "{{ cif.release_url }}/{{ CIF_VERSION | default(cif.version) }}.tar.gz"
+    url: "{{ cif.release_url }}/{{ cif_version }}.tar.gz"
     dest: /tmp/verbose-robot.tar.gz
     headers: "Authorization: Token {{ GH_TOKEN }}"
   when: GH_TOKEN is defined and GH_TOKEN != ""
@@ -18,5 +28,9 @@
 - name: unarchive
   unarchive: src=/tmp/verbose-robot.tar.gz dest=/tmp/ remote_src=true
 
+- name: find dist name
+  find: paths=/tmp patterns="^(verbose-robot-.*)$" use_regex=True file_type=directory
+  register: p
+
 - name: set dist path
-  set_fact: DIST_BUILD_PATH="{{ cif_version | regex_replace('\/', '-') }}"
+  set_fact: DIST_BUILD_PATH="{{ p.files[0].path }}"
